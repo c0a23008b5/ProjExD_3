@@ -145,7 +145,7 @@ class Bomb:
 class Score:
     def __init__(self):
         self.value = 0
-        self.fonto = pg.font.SysFont("hgp創英角ポップ体", 30)
+        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
         self.img = self.fonto.render(f'score:{self.value}', 0, (0, 0, 255))
         self.x = 100
         self.y = 50
@@ -216,7 +216,7 @@ def main():
         
         new_beams = []
         for beam in beams:
-            if check_bound(beam.rct) == (True, True):
+            if check_bound(beam.rct) == (True, True ):
                 new_beams.append(beam)
         beams = new_beams
         key_lst = pg.key.get_pressed()
