@@ -143,16 +143,18 @@ class Bomb:
 
 
 class Score:
+    """
+    self.value：スコアの値
+    imgのcenterを100、HEIGHT-50に変更
+    """
     def __init__(self):
-        self.value = 0
-        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
-        self.img = self.fonto.render(f'score:{self.value}', 0, (0, 0, 255))
-        self.x = 100
-        self.y = 50
+        self.value = 0 #  スコアの初期値
+        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30) #  フォントの変更
+        self.img = self.fonto.render(f'score:{self.value}', 0, (0, 0, 255)) #  文字表示
     def update(self, screen: pg.Surface):
-        self.img = self.fonto.render(f'score:{self.value}', 0, (0, 0, 255))
-        self.rct = self.img.get_rect()
-        self.rct.center = 100, HEIGHT-50
+        self.img = self.fonto.render(f'score:{self.value}', 0, (0, 0, 255)) #  文字表示の更新
+        self.rct = self.img.get_rect() #  位置の取得
+        self.rct.center = 100, HEIGHT-50 #  座標設定
         screen.blit(self.img, self.rct)
         
 def main():
@@ -214,11 +216,11 @@ def main():
 
         beams = [beam for beam in beams if beam is not None]
         
-        new_beams = []
-        for beam in beams:
+        new_beams = [] #  画面内にあるビームのリスト
+        for beam in beams: #  ビームが画面内にあるかの判定
             if check_bound(beam.rct) == (True, True ):
                 new_beams.append(beam)
-        beams = new_beams
+        beams = new_beams #  beamsを画面内にあるものかつ、Noneになってないものに更新
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for beam in beams:
